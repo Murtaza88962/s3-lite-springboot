@@ -51,7 +51,7 @@ public class ExceptionControllerAdvice {
 					    HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 
-	    // add appropriate annotation
+	    @ExceptionHandler({MethodArgumentNotValidException.class , ConstraintViolationException.class})
 	    public ResponseEntity<Error> validatorExceptionHandler(Exception exception)
 	    {
 		LOGGER.error(exception.getMessage(), exception);

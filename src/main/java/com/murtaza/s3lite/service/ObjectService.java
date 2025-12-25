@@ -15,7 +15,10 @@ import com.murtaza.s3lite.repository.ObjectMetaDataRepository;
 import com.murtaza.s3lite.service.impl.LocalStorageService;
 import com.murtaza.s3lite.util.ObjectKeyGenerator;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class ObjectService {
 	
 	@Value("${storage.path-path}")
@@ -81,6 +84,8 @@ public class ObjectService {
 		byte[] content = localStorageService.download(metadata.getStoragePath());
 		return content;
 	}
+	
+	
 	
 	public String deletFile(String bucketName , String objectKey) throws StorageException{
 		if(bucketName == null || bucketName.isBlank()) {
